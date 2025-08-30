@@ -23,6 +23,7 @@
     "@neondatabase/serverless": "^1.0.1",
     "@next/mdx": "^15.5.2",
     "@polar-sh/sdk": "^0.34.14",
+    "@radix-ui/react-slot": "^1.2.3",
     "@tiptap/extension-placeholder": "^3.3.0",
     "@tiptap/extension-typography": "^3.3.0",
     "@tiptap/pm": "^3.3.0",

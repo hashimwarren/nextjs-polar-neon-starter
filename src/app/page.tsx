@@ -1,5 +1,15 @@
 import { format } from "date-fns";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { getAllPosts } from "@/lib/mdx";
 
 export default async function Home() {
@@ -14,27 +24,26 @@ export default async function Home() {
 				</p>
 
 				{/* Newsletter Signup */}
-				<div className="bg-card border rounded-lg p-6 max-w-md mx-auto">
-					<h2 className="text-xl font-semibold mb-2">
-						Subscribe to our newsletter
-					</h2>
-					<p className="text-muted-foreground mb-4">
-						Get the latest posts delivered right to your inbox
-					</p>
-					<form className="flex gap-2">
-						<input
-							type="email"
-							placeholder="Enter your email"
-							className="flex-1 px-3 py-2 border border-input bg-background rounded-md"
-						/>
-						<button
-							type="submit"
-							className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-						>
-							Subscribe
-						</button>
-					</form>
-				</div>
+				<Card className="max-w-md mx-auto">
+					<CardHeader>
+						<CardTitle className="text-xl">
+							Subscribe to our newsletter
+						</CardTitle>
+						<CardDescription>
+							Get the latest posts delivered right to your inbox
+						</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<form className="flex gap-2">
+							<Input
+								type="email"
+								placeholder="Enter your email"
+								className="flex-1"
+							/>
+							<Button type="submit">Subscribe</Button>
+						</form>
+					</CardContent>
+				</Card>
 			</header>
 
 			<main>
@@ -67,12 +76,9 @@ export default async function Home() {
 								{post.tags && post.tags.length > 0 && (
 									<div className="flex flex-wrap gap-2">
 										{post.tags.map((tag) => (
-											<span
-												key={tag}
-												className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded-md"
-											>
+											<Badge key={tag} variant="secondary">
 												{tag}
-											</span>
+											</Badge>
 										))}
 									</div>
 								)}
