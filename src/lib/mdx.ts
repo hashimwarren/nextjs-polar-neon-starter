@@ -64,10 +64,7 @@ export async function getAllPosts(): Promise<Omit<Post, "content">[]> {
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export async function getPostBySlug(
-	year: string,
-	slug: string,
-): Promise<Post | null> {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
 	try {
 		const fullPath = path.join(contentDirectory, "posts", `${slug}.mdx`);
 
@@ -81,10 +78,6 @@ export async function getPostBySlug(
 		const postDate = new Date(data.date);
 		const postYear = postDate.getFullYear().toString();
 
-		if (postYear !== year) {
-			return null;
-		}
-
 		const { content: mdxContent } = await compileMDX({
 			source: content,
 			options: { parseFrontmatter: true },
@@ -92,7 +85,7 @@ export async function getPostBySlug(
 
 		return {
 			slug,
-			year,
+			year: postYear,
 			title: data.title,
 			date: data.date,
 			description: data.description,

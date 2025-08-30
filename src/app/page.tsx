@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -57,17 +56,12 @@ export default async function Home() {
 					<div className="space-y-8">
 						{posts.map((post) => (
 							<article key={post.slug} className="border-b border-border pb-8">
-								<Link
-									href={`/blog/${post.year}/${post.slug}`}
-									className="group"
-								>
+								<Link href={`/blog/${post.slug}`} className="group">
 									<h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
 										{post.title}
 									</h3>
 								</Link>
-								<div className="text-sm text-muted-foreground mb-3">
-									{format(new Date(post.date), "MMMM dd, yyyy")}
-								</div>
+								{/* Date removed */}
 								{post.description && (
 									<p className="text-muted-foreground mb-3">
 										{post.description}
